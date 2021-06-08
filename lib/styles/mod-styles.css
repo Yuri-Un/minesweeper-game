@@ -1,0 +1,361 @@
+:root{
+    --ms-columns: 10;
+    --ms-rows: 10;
+    --ms-cell-width: 30px;
+    --ms-cell-height: 30px;
+    --ms-cell-radius: 50%;
+    --ms-grid-gap: 2px;
+    --ms-min-width:300px;
+    --ms-min-height: 300px;
+    --ms-border-width: 1px;
+    --ms-border-radius: 0px;
+    --ms-margin: 5px;
+    --ms-padding: 2px;
+    --ms-font-size: 16px;
+
+    --ms-hidden-bg: rgb(71, 92, 108);
+    --ms-hidden-bg-shadow: rgb(41, 62, 78);
+    --ms-hidden-bg-hover: rgb(91, 112, 128);
+
+    --ms-open-bg: rgb(230, 230, 230);
+    --ms-open-bg-shadow: rgb(190, 190, 190);
+    --ms-open-color: rgb(85, 85, 85);
+
+    --menu-roll-one: -3deg;
+    --menu-roll-two: 1deg;
+    --menu-roll-three: 4deg;
+    --menu-width: 200px;
+
+    --def-font-size: 16px;
+    --blur-mode: 0px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-family: Helvetica, Geneva, sans-serif;
+    font-size: var(--def-font-size);
+
+    user-select: none; /* supported by Chrome and Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+.blur{
+    filter: blur(var(--blur-mode));
+    -webkit-filter: blur(var(--blur-mode));
+    -moz-filter: blur(var(--blur-mode));
+}
+
+/*----------------------------------------------- 
+                    Game styles 
+------------------------------------------------*/
+.minesweeper{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(var(--ms-columns), var(--ms-cell-width));
+    grid-auto-rows: var(--ms-cell-height);
+    grid-gap: var(--ms-grid-gap);
+
+    border: var(--ms-border-width) solid transparent;
+    margin: var(--ms-margin);
+    padding: var(--ms-padding);
+
+    min-width: var(--ms-min-width);
+    max-width: 100%;
+    min-height: var(--ms-min-height);
+    max-height: calc(100vh - 2*var(--ms-margin));
+
+    overflow-y: auto;
+    overflow-x: unset;
+}
+
+.cell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    filter: blur(var(--blur-mode));
+
+    font-size: var(--ms-font-size);
+    color: var(--ms-open-color);
+
+    cursor: pointer;
+}
+
+.hidden{
+    background: var(--ms-hidden-bg);
+    color:white;
+    
+    border-radius: var(--ms-cell-radius);
+    box-shadow: inset 0px 0px calc(var(--ms-cell-width)/3) 3px var(--ms-hidden-bg-shadow);
+
+    transition-property: background;
+    transition-duration: .2s;
+    transition-timing-function: ease-in;
+}
+
+.hidden:hover{
+    background-color: var(--ms-hidden-bg-hover);
+    color:transparent;
+}
+
+.flag{
+    background: var(--ms-hidden-bg) url(./images/red-flag.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    color: transparent;
+
+    border-radius: var(--ms-cell-radius);
+}
+
+.open{
+    background: var(--ms-open-bg);
+    box-shadow: inset 0px 0px calc(var(--ms-cell-width)/3) 3px var(--ms-open-bg-shadow);
+
+    border-radius: var(--ms-cell-radius);
+}
+
+.mine{
+    background: var(--ms-open-bg) url(./images/mine.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    color: transparent;
+
+    border-radius: var(--ms-cell-radius);
+}
+
+/*----------------------------------------------- 
+                    Game menu styles 
+------------------------------------------------*/
+.game-menu-wrapper{
+    position: absolute;
+    display: flex;
+  
+    background: linear-gradient(-50deg, rgb(224, 224, 224) 30%, rgb(138, 138, 138) 60%, rgb(209, 209, 209) 80%);
+    background-size: 400% 400%;
+    animation: menu-bg 10s ease infinite;
+    border: 1px solid #B5B5B5;
+    border-radius: 10px;
+
+    min-width: var(--menu-width);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes menu-bg{
+    0% {background-position: 0% 50%;}
+    25% {background-position: 25% 50%;}
+    50% {background-position: 100% 50%;}
+    75% {background-position: 25% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.game-over-menu, .game-won-menu, .game-pause-menu, .game-main-menu, .game-about-menu, .game-settings-menu{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(1, 1fr);
+    align-items: flex-start;
+
+    background: whitesmoke;
+    border: 1px solid #B5B5B5;
+    border-radius: 10px;
+
+    width: 100%;
+    padding: 15px;
+    margin: 15px;
+}
+
+.menu-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-family: Impact;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    text-shadow: 0px 1px black;
+    font-weight: bold;
+    letter-spacing: .1em;
+
+    padding-bottom: 10px;
+}
+
+.lose-game{
+    color:rgb(219, 57, 57);
+}
+
+.win-game{
+    color:rgb(18, 136, 14);
+}
+
+.pause-game, .main-menu{
+    color:gray;
+}
+
+.menu-option{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #676767;
+    color: white;
+
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: .7em;
+    letter-spacing: .01em;
+    cursor: pointer;
+
+    padding: 7px;
+    margin: 5px 0;
+    border: 1px solid #C3C3C3;
+    border-radius: 3px;
+
+    transition-property: transform, background;
+    transition-duration: .1s;
+    transition-timing-function: ease-in;
+}
+
+.menu-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    flex-wrap: wrap;
+
+    padding: .5px 0 10px 0;
+    min-width: 130px;
+}
+
+.menu-container label, .menu-container h3{
+    font-size: .9em;
+    font-weight: bold;
+
+    width: 100%;
+}
+
+.game-about-menu .menu-container{
+    text-align: left;
+}
+.game-about-menu .menu-container input[type="checkbox"]{
+    margin: 5px 0 10px 0;
+}
+
+.game-about-menu .menu-container input[type="checkbox"]::after{
+    content: 'Enabled';
+    margin-left: 20px;
+}
+
+.menu-container p{
+    font-size: 13px;
+    color: var(--ms-open-color);
+
+    margin-bottom: 3px;
+    min-width: 170px;
+}
+
+.menu-container a{
+    text-decoration: none;
+    font-size: 13px;
+    color:rgb(62, 136, 170);
+
+    padding: 2px 0;
+}
+
+.menu-container a:hover{
+    text-decoration: underline;
+}
+
+.menu-container div.option-label{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-container div.option-label input{
+    font-size: 12px;
+}
+
+.menu-container div.option-label span{
+    font-size: 12px;
+    padding-left: 3px;
+}
+
+.menu-container input{
+    cursor: pointer;
+    justify-content: right;
+}
+
+.menu-container select{
+    border: 1px solid #777;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+.menu-container div.enhanced-range{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
+.menu-container div.enhanced-range span{
+    font-size: 12px;
+}
+
+.menu-container label{
+    text-align:left;
+}
+
+.menu-container input[type='range']{
+    width: 60%;
+}
+
+.restart-game:hover, .restore-game:hover, .new-game:hover, .acc-settings:hover{
+    transform: rotateZ(-4deg) translateX(-5px) translateY(-1px);
+    background: #008000;
+    color:white;
+    border: 1px solid transparent;
+}
+
+.next-game:hover, .about-game:hover, .default-settings:hover{
+    transform: rotateZ(2deg) translateX(7px) translateY(-3px);
+    background: #1849db;
+    color:white;
+    border: 1px solid transparent;
+}
+
+.exit-game:hover, .game-settigns:hover, .exit-settings:hover{
+    transform: rotateZ(4deg) translateX(5px) translateY(-2px);
+    background: #d43f3f;
+    color:white;
+    border: 1px solid transparent;
+}
+
+.hidden-menu{
+    visibility: hidden;
+    display: none;
+    width: 0px;
+    height: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.disabled{
+    opacity: 0.5;
+    pointer-events: none;
+}
