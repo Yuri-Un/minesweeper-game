@@ -1,0 +1,321 @@
+/* Meta styles */
+:root{
+    --game-menu-top: 0px;
+    --game-menu-left: 0px;
+}
+
+@font-face {
+    font-family: myDigitsFont;
+    src: url(./fonts/DigitalDisplayTfb-y6oZ.ttf);
+}
+
+@font-face {
+    font-family: myTitleFont;
+    src: url(./fonts/Timeburner-xJB8.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
+body{
+    background: #eee;  
+    
+    /* fallback for old browsers */
+    /*background: -webkit-linear-gradient(to right, #ADA996, #DBDBDB, #EEE, #DBDBDB, #ADA996);  /*Chrome 10-25, Safari 5.1-6 */
+    /*background: linear-gradient(to right, #ADA996, #DBDBDB, #EEE, #DBDBDB, #ADA996); /*W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+*/
+        
+
+}
+
+.popup-menu{
+    display:none;
+    position: absolute;
+    top:var(--game-menu-top);
+    left:var(--game-menu-left);
+    width: 200px;
+    height: auto;
+
+    font-family: myTitleFont;
+    font-weight: bolder;
+
+    border-radius: 5px;
+    border: 1px solid #aaa;
+
+    background-color: #eee;
+    z-index: 999;
+}
+
+
+.popup-menu ul{
+    display: block;
+    width:100%;
+    list-style:none;
+}
+
+.popup-menu ul li{
+    margin: 1px;
+    padding: 7px 15px;
+
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+
+    transition-property: background, color;
+    transition-duration: .2s;
+    transition-timing-function: ease-in;
+}
+
+.popup-menu ul li:hover{
+    background-color: #fff;
+
+    border-image-source:linear-gradient(to right, #eee, #bbb 50%, #eee);
+    border-image-slice: 1;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    background: linear-gradient(to right, #efefef, #fff 50%, #eee);  
+}
+
+
+
+
+/* CSS Grid setup */
+.container{
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    grid-template-areas: "iconDiv leftDiv titleDiv rightDiv helpDiv"
+                         "mainDiv mainDiv mainDiv mainDiv mainDiv"
+                         "statusDiv statusDiv statusDiv statusDiv statusDiv";
+    grid-template-rows: 40px 1fr 0px;
+    grid-template-columns: 40px 1fr 150px 1fr 40px;
+    grid-gap: 0px;
+
+    z-index: 1000;
+}
+
+/* Generic styles */
+.container > div{
+    /* border: 1px solid #333; */
+    color:#333;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.left{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.header-text{
+    font-family:myDigitsFont;
+    font-weight:bold;
+    font-size: 24px;
+    padding: 0 1px;
+
+    /* border: 1px solid #333; */
+}
+
+.container img{
+    margin: 0px 5px;
+    width: 24px;
+    height: auto;
+    /* border: 1px solid #333; */
+}
+
+.default-hover{
+    transition-property: background;
+    transition-duration: .2s;
+    transition-timing-function: ease-in;
+
+    border-radius: 3px;
+}
+
+.default-hover:hover{
+    background:#ccc;
+}
+
+.red{
+    color:red;
+}
+
+.blue{
+    color:blue;
+}
+
+.green{
+    color:green;
+}
+
+.orange{
+    color:orange;
+}
+
+.yellow{
+    color:yellow;
+}
+
+/* Grid cell formattings*/
+.container > .menu{
+    grid-area: iconDiv;
+    cursor: pointer;
+
+    /* transition-property: background;
+    transition-duration: .2s;
+    transition-timing-function: ease-in;
+
+    border-radius: 3px; */
+}
+/* 
+.container > .menu:hover{
+    background:#ccc;
+} */
+
+
+.container > .info-left{
+    grid-area: leftDiv;
+
+    padding: 0 10px;
+}
+
+.container > .title{
+    font-family:myTitleFont;
+    font-weight:bold;
+    font-size: 20px;
+    grid-area: titleDiv;
+}
+
+.container > .info-right{
+    grid-area: rightDiv;
+
+    padding: 0 10px;
+}
+
+.container > .help{
+    grid-area: helpDiv;
+    cursor: pointer;
+}
+
+.container > .main{
+    grid-area: mainDiv;
+}
+
+.container > .status{
+    grid-area: statusDiv;
+}
+
+
+/*=========================================== 
+                About Styles 
+============================================*/
+.about-container{
+    display:flex;
+    flex-direction:column;
+    flex-wrap:nowrap;
+
+    height: auto;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 20px;
+    /* justify-content: center; */
+    align-items: center;
+
+    /* border-radius: 3px; */
+    /* border: 1px solid #333; */
+}
+
+.about-container a{
+    text-decoration: none;
+    color: rgb(7, 150, 206);
+}
+
+.about-container ul{
+    list-style: none;
+    padding-left: 15px;
+}
+
+.about-container ul li span{
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.about-container > *{
+    width: 80%;    
+    padding: 15px;
+
+    font-family: myTitleFont;
+    font-weight: bold;
+    background-color: #fff;
+}
+
+.about-container header{
+    /* background-color: #0095FF; */
+    background-color: #575757;
+    color: #fff;
+    font-size: 20px;
+    border: 1px solid #575757;
+    /* border-bottom: none; */
+    border-radius: 15px 15px 0px 0px;
+}
+
+.about-container > nav{
+    height: auto;
+    padding: 5px 15px;
+    background-color: #fff;
+
+    border: 1px solid #ccc;
+    border-top: none;
+
+    font-size: 14px;
+    cursor: pointer;
+
+    transition-property: padding-left, background, color;
+    transition-duration: 0.3s;
+}
+
+.about-container > nav:hover{
+    padding-left: 5px;
+    background-color: #fff;
+    color: #fff;
+    background: linear-gradient(to right, #ddd, #fff 50%, #ddd);  
+}
+
+.about-container > section{
+    border: 1px solid #ccc;
+    border-top: none;
+
+    font-size: 14px;
+}
+
+.about-container > section > h1, 
+.about-container > section > h2
+{
+    color:rgb(14, 150, 43);
+    padding-top: 10px;
+}
+
+.about-container > section > h2{
+    font-size: 16px;
+}
+
+.about-container > footer{
+    font-size: 12px;
+    text-align: center;
+
+    border: 1px solid #ccc;
+    border-top:none;
+    border-radius: 0px 0px 15px 15px;
+}

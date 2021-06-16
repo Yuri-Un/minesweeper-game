@@ -12,7 +12,60 @@
 </head>
 <body>
     
-    <div id="game" class="minesweeper"></div>
+    <div class="container">
+        <div id="menu" class="menu center default-hover">
+            <img src="./styles/images/menu-button-of-three-horizontal-lines.png" status="normal" alt="Menu button icon">
+            <div class="popup-menu">
+                <ul>
+                    <li id="new-game">New Game</li>
+                    <li id="restart-game">Restart Game</li>
+                    <li id="next-game">Next Game</li>
+                    <li id="pause-game">Pause</li>
+                    <li id="about-game">About</li>
+                </ul>
+            </div> 
+        </div>
+        <div class="info-left right">
+            <span id="timer" class="header-text">00:00</span>
+            <img src="./styles/images/clock-circular-outline.png" alt="Clock icon" height="24">
+        </div>
+        <div class="title center">
+            <span class="red">M</span>
+            <span class="green">i</span>
+            <span class="blue">n</span>
+            <span class="green">e</span>
+            <span class="orange">s</span>
+            <span class="red">w</span>
+            <span class="green">e</span>
+            <span class="green">e</span>
+            <span class="blue">p</span>
+            <span class="green">e</span>
+            <span class="orange">r</span>
+        </div>
+        <div class="info-right left">
+            <img src="./styles/images/flag.png" alt="Flag icon" height="24">
+            <span id="flags" class="header-text">0</span>
+            <span class="header-text">/</span>
+            <span id="mines" class="header-text">0</span>
+        </div>
+        <div id="refresh" class="help center default-hover">
+            <img src="./styles/images/refresh-button.png" alt="Refresh icon" height="24">
+        </div>
+        <div class="main">
+            <div id="game" class="minesweeper"></div>
+        </div>
+        </div>
+    </div>
+
+    <!-- <div class="popup-menu">
+        <ul>
+            <li>New Game</li>
+            <li>Restart Game</li>
+            <li>Next Game</li>
+            <li>Pause</li>
+            <li>About</li>
+        </ul>
+    </div> -->
 
     <script defer type="module" src="./scripts/app.js"></script>
 </body>
