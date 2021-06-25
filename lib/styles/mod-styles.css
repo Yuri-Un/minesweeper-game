@@ -160,7 +160,12 @@ html{
     100% {background-position: 0% 50%;}
 }
 
-.game-over-menu, .game-won-menu, .game-pause-menu, .game-main-menu, .game-about-menu, .game-settings-menu{
+.game-over-menu,
+.game-won-menu, 
+.game-pause-menu, 
+.game-main-menu,
+.game-about-menu, 
+.game-settings-menu{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(1, 1fr);
@@ -237,7 +242,8 @@ html{
     min-width: 130px;
 }
 
-.menu-container label, .menu-container h3{
+.menu-container label,
+.menu-container h3{
     font-size: .9em;
     font-weight: bold;
 
