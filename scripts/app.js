@@ -50,12 +50,12 @@ function initStyles(){
 function menuHandler(e){
     if(menuIcoElem.getAttribute('status') === 'normal'){
         menuListElem.style.display = 'block';
-        menuIcoElem.src = '../styles/images/delete.png';
+        menuIcoElem.src = './styles/images/delete.png';
         menuIcoElem.setAttribute('status', 'close');
     }
     else{
         menuListElem.style.display = 'none';
-        menuIcoElem.src = '../styles/images/menu-button-of-three-horizontal-lines.png';
+        menuIcoElem.src = './styles/images/menu-button-of-three-horizontal-lines.png';
         menuIcoElem.setAttribute('status', 'normal');
     }
 
@@ -96,7 +96,7 @@ function pauseGameMenuHandler(e){
 }
 
 function aboutGameMenuHandler(e){
-    location.assign('../about.html');
+    location.assign('about.html');
 }
 
 function refreshWindowHandler(e){
