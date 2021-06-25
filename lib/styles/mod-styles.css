@@ -325,21 +325,28 @@ html{
     width: 60%;
 }
 
-.restart-game:hover, .restore-game:hover, .new-game:hover, .acc-settings:hover{
+.restart-game:hover,
+.restore-game:hover,
+.new-game:hover,
+.acc-settings:hover{
     transform: rotateZ(-4deg) translateX(-5px) translateY(-1px);
     background: #008000;
     color:white;
     border: 1px solid transparent;
 }
 
-.next-game:hover, .about-game:hover, .default-settings:hover{
+.next-game:hover,
+.about-game:hover,
+.default-settings:hover{
     transform: rotateZ(2deg) translateX(7px) translateY(-3px);
     background: #1849db;
     color:white;
     border: 1px solid transparent;
 }
 
-.exit-game:hover, .game-settigns:hover, .exit-settings:hover{
+.exit-game:hover,
+.game-settings:hover,
+.exit-settings:hover{
     transform: rotateZ(4deg) translateX(5px) translateY(-2px);
     background: #d43f3f;
     color:white;

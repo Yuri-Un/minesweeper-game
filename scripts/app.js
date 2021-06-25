@@ -6,6 +6,7 @@ const refreshIcoElem = document.querySelector('#refresh');
 const newGameMenuElem = document.querySelector('#new-game');
 const restartGameMenuElem = document.querySelector('#restart-game');
 const nextGameMenuElem = document.querySelector('#next-game');
+const pauseGameMenuElem = document.querySelector('#pause-game');
 const aboutGameMenuElem = document.querySelector('#about-game');
 
 const timerElem = document.querySelector('#timer');
@@ -19,12 +20,11 @@ refreshIcoElem.addEventListener('click', refreshWindowHandler, false);
 newGameMenuElem.addEventListener('click', newGameMenuHandler, false);
 restartGameMenuElem.addEventListener('click', restartGameMenuHandler, false);
 nextGameMenuElem.addEventListener('click', nextGameMenuHandler, false);
+pauseGameMenuElem.addEventListener('click', pauseGameMenuHandler, false);
 aboutGameMenuElem.addEventListener('click', aboutGameMenuHandler, false);
-//Main functions (Enter point)
-initStyles();
 
 //Minesweeper module initialization
-import {Board, gameMode, newGame, restartGame, nextGame} from '../lib/scripts/minesweeper-mod.js';
+import {Board, gameMode, newGame, restartGame, nextGame, pauseGame, restoreGame, getBoard} from '../lib/scripts/minesweeper-mod.js';
 const board = new Board('game', gameMode.EASY_MODE);
 newGame(board);
 
@@ -33,6 +33,9 @@ board.domElement.addEventListener('ms-flags', flagsHandler, false);
 board.domElement.addEventListener('ms-mines', minesHandler, false);
 
 
+//Main functions (Enter point)
+initStyles();
+
 //Private functions library
 function initStyles(){
     const menuIconParams = menuIcoElem.getBoundingClientRect();
@@ -40,9 +43,6 @@ function initStyles(){
 
     document.documentElement.style.setProperty('--game-menu-top', menuButtonParams.bottom + 'px');
     document.documentElement.style.setProperty('--game-menu-left', menuIconParams.left + 'px');
-
-    console.table(menuIconParams);
-
 }
 
 
@@ -58,30 +58,46 @@ function menuHandler(e){
         menuIcoElem.src = '../styles/images/menu-button-of-three-horizontal-lines.png';
         menuIcoElem.setAttribute('status', 'normal');
     }
+
+    const tempBoard = getBoard();
+    if(tempBoard.gamePaused){
+        pauseGameMenuElem.innerText = "Restore Game";
+    }
+    else{
+        pauseGameMenuElem.innerText = "Pause";
+    }
 }
 
 function newGameMenuHandler(e){
     if(board === null) return;
-
+    
     newGame(board);
 }
 
 function restartGameMenuHandler(e){
-    if(board === null) return;
-
-    restartGame(board);
+    restartGame();
 }
 
 function nextGameMenuHandler(e){
-    if(board === null) return;
+    nextGame();
+}
 
-    nextGame(board);
+function pauseGameMenuHandler(e){
+    const tempBoard = getBoard();
+
+    if(tempBoard.gamePaused){
+        pauseGameMenuElem.innerText = "Pause";
+        restoreGame();
+        return;
+    }
+
+    pauseGame();
+    pauseGameMenuElem.innerText = "Restore Game";
 }
 
 function aboutGameMenuHandler(e){
     location.assign('../about.html');
 }
-
 
 function refreshWindowHandler(e){
     location.reload();

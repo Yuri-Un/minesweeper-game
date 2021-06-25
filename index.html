@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Minesweeper Game Mod</title>
+    <meta name="description" content="Minesweeper Game Mode - a well configurable classic minesweeper minigame, based on the Yuri-Un/minesweeper.git project.">
 
     <link rel="shortcut icon" href="./lib/styles/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./styles/app-styles.css">
@@ -16,13 +18,15 @@
         <div id="menu" class="menu center default-hover">
             <img src="./styles/images/menu-button-of-three-horizontal-lines.png" status="normal" alt="Menu button icon">
             <div class="popup-menu">
+                <nav>
                 <ul>
                     <li id="new-game">New Game</li>
                     <li id="restart-game">Restart Game</li>
                     <li id="next-game">Next Game</li>
                     <li id="pause-game">Pause</li>
-                    <li id="about-game">About</li>
+                    <li id="about-game"><a href="./about.html">About</a></li>
                 </ul>
+                </nav>
             </div> 
         </div>
         <div class="info-left right">
@@ -51,21 +55,13 @@
         <div id="refresh" class="help center default-hover">
             <img src="./styles/images/refresh-button.png" alt="Refresh icon" height="24">
         </div>
+
         <div class="main">
             <div id="game" class="minesweeper"></div>
         </div>
+
         </div>
     </div>
-
-    <!-- <div class="popup-menu">
-        <ul>
-            <li>New Game</li>
-            <li>Restart Game</li>
-            <li>Next Game</li>
-            <li>Pause</li>
-            <li>About</li>
-        </ul>
-    </div> -->
 
     <script defer type="module" src="./scripts/app.js"></script>
 </body>
