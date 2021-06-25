@@ -41,7 +41,7 @@ menu.addEventListener('click', menuHandler, false);
 
 //Event handlers
 function menuHandler(e){
-    location.assign('../index.html');
+    location.assign('./minesweeper-game/index.html');
 }
 
 
